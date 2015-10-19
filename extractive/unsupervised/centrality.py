@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Module Centroid
+Module Centrality
 Please refer to the paper LexRank (Gunes Erkan and Dragomir R. Radev, 2009)
 for more information
 """
