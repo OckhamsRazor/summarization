@@ -141,12 +141,16 @@ if __name__ == '__main__':
 
         L = power_method(cosine_matrix, err_tolerance, damping_factor)
         with open(path.join(output_dir, f), 'w') as fout:
-            score_order = [s[0] for s in sorted(
+            score_order = [s for s in sorted(
                 enumerate(L), key=lambda x: x[1], reverse=True
             )]
-            summ_len = int(compression_rate*len(doc))
+            summ_len = int(math.ceil(compression_rate*len(doc)))
             candidates = score_order[:summ_len]
-            for cand_id in candidates:
+            candidates_sorted = [cand for cand in sorted(
+                candidates, key=lambda x: x[0]
+            )]
+
+            for cand_id, cand_score in candidates_sorted:
                 candidate = doc[cand_id]
                 for word in candidate:
                     fout.write(word)
